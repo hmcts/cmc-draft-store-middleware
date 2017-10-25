@@ -1,0 +1,48 @@
+{
+  "name": "@hmcts/cmc-draft-store-middleware",
+  "version": "1.0.0",
+  "description": "Node.js middleware for draft store",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "prepublishOnly": "tsc -p tsconfig.publish.json",
+    "postpublish": "rm -rf dist/",
+    "lint": "tslint --project tsconfig.json",
+    "test": "NODE_ENV=mocha LOG_LEVEL=OFF mocha --opts mocha.opts --reporter-options reportFilename=unit,inlineAssets=true,reportTitle=draft-store-client 'src/test/draft/**/*.ts'",
+    "test:coverage": "NODE_ENV=mocha LOG_LEVEL=OFF nyc mocha --opts mocha.opts 'src/test/draft/**/*.ts'",
+    "precommit": "yarn lint",
+    "prepush": "yarn test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.github.com:hmcts/cmc-draft-store-middleware.git"
+  },
+  "author": "HMCTS Reform",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "ts-node": "^3.3.0",
+    "tslint": "^5.5.0",
+    "tslint-config-standard": "^6.0.1",
+    "typescript": "^2.5.3"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/main"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "report-dir": "coverage-report",
+    "all": true
+  }
+}
