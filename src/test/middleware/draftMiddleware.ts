@@ -44,16 +44,16 @@ describe('Draft middleware', () => {
         new Draft(1, 'default', new DraftDocument(), moment(), moment())
       ]))
 
-      await DraftMiddleware.requestHandler(draftService,'default', 100)(req, res, next)
+      await DraftMiddleware.requestHandler(draftService, 'default', 100)(req, res, next)
       chai.expect(draftService.find).to.have.been.called
       chai.expect(next).to.have.been.called.called
     })
-    
+
     it('should not search for drafts if the user is not logged in', async () => {
       const res: express.Response = mockRes()
       res.locals.isLoggedIn = false
 
-      await DraftMiddleware.requestHandler(draftService,'default', 100)(req, res, next)
+      await DraftMiddleware.requestHandler(draftService, 'default', 100)(req, res, next)
       chai.expect(draftService.find).to.not.have.been.called
       chai.expect(next).to.have.been.called
     })
@@ -62,7 +62,7 @@ describe('Draft middleware', () => {
       const res: express.Response = mockRes()
       res.locals.isLoggedIn = undefined
 
-      await DraftMiddleware.requestHandler(draftService,'default', 100)(req, res, next)
+      await DraftMiddleware.requestHandler(draftService, 'default', 100)(req, res, next)
       chai.expect(draftService.find).to.not.have.been.called
       chai.expect(next).to.have.been.called
     })

@@ -1,3 +1,3 @@
 export class DraftDocument {
-  externalId: string
+  externalId: string | undefined
 }
