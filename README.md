@@ -4,22 +4,39 @@
 
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
-This is a Node.js/Express library for interacting with the [draft store api](https://github.com/hmcts/draft-store)
+This is a Node.js/Express library for interacting with the [draft store api](https://github.com/hmcts/draft-store).
 
-# To add library
+## Getting started
+
+## How to use it?
+
+### Installation
+
+To add library to the project dependencies run:
 
 ```
 yarn add @hmcts/cmc-draft-store-middleware
 ```
 
-## Getting Started
+### Sample code
 
-### Prerequisites
+Example use of the middleware is presented below:
+
+```
+import { DraftMiddleware } from '@hmcts/cmc-draft-store-middleware/dist/middleware/draftMiddleware'
+
+const draftService: DraftService = ... // initiate draft service prior using middleware
+app.all(/^.*$/, DraftMiddleware.requestHandler(draftService, 'default', (value: any): any => value))
+```
+
+### How to contribute?
+
+#### Prerequisites
 
 * [Node.js](https://nodejs.org/) >= v8.0.0
 * [yarn](https://yarnpkg.com/)
 
-### Running the application
+#### Dependencies
 
 Install dependencies by executing the following command:
 
@@ -27,21 +44,21 @@ Install dependencies by executing the following command:
 $ yarn install
  ```
 
-## Developing
-
-### Code style
+#### Code style
 
 We use [TSLint](https://palantir.github.io/tslint/) with [StandardJS](http://standardjs.com/index.html) rules 
 
-Running the linting:
+Run the linting:
 
 ```bash
 $ yarn lint
 ```
 
-### Running the tests
+Linting will also run automatically prior committing changes.
 
-Mocha is used for writing tests.
+#### Running the tests
+
+[Mocha](https://mochajs.org) is used for writing tests.
 
 Run them with:
 
@@ -49,7 +66,7 @@ Run them with:
 $ yarn test
 ```
 
-For test coverage:
+For test coverage run:
 
 ```bash
 $ yarn test:coverage
