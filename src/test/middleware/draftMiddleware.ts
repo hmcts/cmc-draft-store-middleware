@@ -40,7 +40,7 @@ describe('Draft middleware', () => {
       sinon.restore(draftService)
     })
 
-    describe('when used is not logged in', () => {
+    describe('when user is not logged in', () => {
       [false, undefined].forEach(value => {
         it(`should not search for drafts when isLoggedIn flag is set to ${value}`, async () => {
           res.locals.isLoggedIn = value
@@ -53,7 +53,7 @@ describe('Draft middleware', () => {
       })
     })
 
-    describe('when used is logged in', () => {
+    describe('when user is logged in', () => {
       beforeEach(() => {
         res.locals.isLoggedIn = true
         res.locals.user = {
