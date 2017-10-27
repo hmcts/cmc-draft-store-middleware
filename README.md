@@ -39,7 +39,7 @@ $ npm install @hmcts/cmc-draft-store-middleware
 Example use of the middleware in the Express.js application is presented below:
 
 ```
-import { DraftMiddleware } from '@hmcts/cmc-draft-store-middleware/dist/middleware/draftMiddleware'
+import { DraftMiddleware } from '@hmcts/cmc-draft-store-middleware'
 
 const draftService: DraftService = ... // initiate draft service prior using middleware
 app.all(/^.*$/, DraftMiddleware.requestHandler(draftService, 'default', (value: any): any => value))

@@ -1,8 +1,8 @@
 import * as express from 'express'
 import * as moment from 'moment'
 
-import { Draft } from '@hmcts/draft-store-client/dist/draft/draft'
-import { DraftService } from '@hmcts/draft-store-client/dist/draft/draftService'
+import { Draft } from '@hmcts/draft-store-client'
+import { DraftService } from '@hmcts/draft-store-client'
 
 import { DraftDocument } from '../model/draftDocument'
 

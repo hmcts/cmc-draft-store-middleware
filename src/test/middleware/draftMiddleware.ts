@@ -8,9 +8,9 @@ import { mockReq, mockRes } from 'sinon-express-mock'
 
 import { DraftMiddleware } from '../../main/middleware/draftMiddleware'
 
-import { DraftService } from '@hmcts/draft-store-client/dist/draft/draftService'
+import { DraftService } from '@hmcts/draft-store-client'
 import { DraftDocument } from '../../main/model/draftDocument'
-import { Draft } from '@hmcts/draft-store-client/dist/draft/draft'
+import { Draft } from '@hmcts/draft-store-client'
 import moment = require('moment')
 
 chai.use(spies)
