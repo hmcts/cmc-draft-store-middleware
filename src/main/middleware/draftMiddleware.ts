@@ -26,34 +26,32 @@ export class DraftMiddleware {
     return async function (req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
       if (res.locals.isLoggedIn) {
         try {
-          draftService.find(draftType, limit + '', res.locals.user.bearerToken, deserializeFn)
-            .then((drafts: Draft<T>[]) => {
-              // req.params isn't populated here https://github.com/expressjs/express/issues/2088
-              const externalId: string | undefined = UUIDUtils.extractFrom(req.path)
+          let drafts = await draftService.find(draftType, limit + '', res.locals.user.bearerToken, deserializeFn)
 
-              if (externalId !== undefined) {
-                drafts = tryFilterByExternalId(drafts, externalId)
-              }
+          // req.params isn't populated here https://github.com/expressjs/express/issues/2088
+          const externalId: string | undefined = UUIDUtils.extractFrom(req.path)
 
-              if (drafts.length > 1) {
-                throw new Error('More then one draft has been found')
-              }
+          if (externalId !== undefined) {
+            drafts = tryFilterByExternalId(drafts, externalId)
+          }
 
-              let draft: Draft<T>
-              if (drafts.length === 1) {
-                draft = drafts[0]
-              } else {
-                draft = new Draft<T>(0, draftType, deserializeFn(undefined), moment(), moment())
-              }
+          if (drafts.length > 1) {
+            throw new Error('More then one draft has been found')
+          }
 
-              if (draft.document.externalId === undefined && externalId !== undefined) {
-                draft.document.externalId = externalId
-              }
-              res.locals.user[`${draftType}Draft`] = draft
+          let draft: Draft<T>
+          if (drafts.length === 1) {
+            draft = drafts[0]
+          } else {
+            draft = new Draft<T>(0, draftType, deserializeFn(undefined), moment(), moment())
+          }
 
-              next()
-            })
-            .catch(next)
+          if (draft.document !== undefined && draft.document.externalId === undefined && externalId !== undefined) {
+            draft.document.externalId = externalId
+          }
+          res.locals.user[`${draftType}Draft`] = draft
+
+          next()
         } catch (err) {
           next(err)
         }
