@@ -1,5 +1,11 @@
 # @hmcts/cmc-draft-store-middleware
 
+[![Travis badge](https://api.travis-ci.org/hmcts/cmc-draft-store-middleware.svg?branch=master)](https://travis-ci.org/hmcts/cmc-draft-store-middleware)
+
+[![Codecov badge](https://codecov.io/github/hmcts/cmc-draft-store-middleware/coverage.svg?branch=master)](https://codecov.io/github/hmcts/cmc-draft-store-middleware?branch=master)
+
+[![NPM version badge](https://img.shields.io/npm/v/@hmcts/cmc-draft-store-middleware.svg)](https://www.npmjs.com/@hmcts/cmc-draft-store-middleware)
+
 [![Greenkeeper badge](https://badges.greenkeeper.io/hmcts/cmc-draft-store-middleware.svg)](https://greenkeeper.io/)
 
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
