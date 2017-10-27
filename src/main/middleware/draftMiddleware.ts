@@ -1,8 +1,7 @@
 import * as express from 'express'
 import * as moment from 'moment'
 
-import { Draft } from '@hmcts/draft-store-client'
-import { DraftService } from '@hmcts/draft-store-client'
+import { Draft, DraftService } from '@hmcts/draft-store-client'
 
 import { DraftDocument } from '../model/draftDocument'
 
@@ -29,7 +28,10 @@ function draftIsMissingExternalId<T extends DraftDocument> (draft: Draft<T>): bo
 
 export class DraftMiddleware {
 
-  static requestHandler<T extends DraftDocument> (draftService: DraftService, draftType: string, limit: number, deserializeFn: (value: any) => T = (value) => value): express.RequestHandler {
+  static requestHandler<T extends DraftDocument> (draftService: DraftService,
+                                                  draftType: string,
+                                                  limit: number,
+                                                  deserializeFn: (value: any) => T = (value) => value): express.RequestHandler {
     return async function (req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
       if (res.locals.isLoggedIn) {
         try {
