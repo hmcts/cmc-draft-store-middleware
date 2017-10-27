@@ -12,7 +12,9 @@
 
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
-This is a Node.js/Express library for interacting with the [draft store api](https://github.com/hmcts/draft-store).
+This is a Node.js/Express library for interacting with the [draft store API](https://github.com/hmcts/draft-store).
+The middleware retrieves draft of selected type from the draft store API and sets it in Express.js local user scope.
+If draft does not exist in the draft store then an empty draft is set it in Express.js local user scope.
 
 ## Getting started
 
