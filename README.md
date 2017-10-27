@@ -14,9 +14,9 @@ This is a Node.js/Express library for interacting with the [draft store api](htt
 
 ## Getting started
 
-## How to use it?
+### How to use it?
 
-### Installation
+#### Installation
 
 To add library to the project dependencies run:
 
@@ -24,7 +24,7 @@ To add library to the project dependencies run:
 yarn add @hmcts/cmc-draft-store-middleware
 ```
 
-### Sample code
+#### Sample code
 
 Example use of the middleware is presented below:
 
