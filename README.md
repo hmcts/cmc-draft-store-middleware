@@ -2,7 +2,7 @@
 
 [![Travis badge](https://api.travis-ci.org/hmcts/cmc-draft-store-middleware.svg?branch=master)](https://travis-ci.org/hmcts/cmc-draft-store-middleware)
 
-[![Codecov badge](https://codecov.io/github/hmcts/cmc-draft-store-middleware/coverage.svg?branch=master)](https://codecov.io/github/hmcts/cmc-draft-store-middleware?branch=master)
+[![Codecov badge](https://codecov.io/gh/hmcts/cmc-draft-store-middleware/graphs/badge.svg)](https://codecov.io/github/hmcts/cmc-draft-store-middleware)
 
 [![NPM version badge](https://img.shields.io/npm/v/@hmcts/cmc-draft-store-middleware.svg)](https://www.npmjs.com/@hmcts/cmc-draft-store-middleware)
 
