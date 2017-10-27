@@ -1,0 +1,23 @@
+language: node_js
+cache: yarn
+script:
+  - yarn --version
+  - yarn check --integrity
+  - yarn lint
+  - yarn test
+  - yarn test:coverage
+before_install:
+  - yarn global add greenkeeper-lockfile@1
+before_script: greenkeeper-lockfile-update
+after_script: greenkeeper-lockfile-upload
+after_success:
+  - yarn test:codacy-upload
+  - yarn test:codecov-upload
+deploy:
+  provider: npm
+  email: jenkins-reform@hmcts.net
+  api_key:
+    secure: EDPh8+Ma6tVAAl4mjGo74sUiNnbRPOG7gHyfFKB5+7Rmchf6VluJPlpAB8RE0MXC8dDOZihUdtt60te8iuvlUjqQWRI8s22cdJUK5rxACskeeiNQEJDJNwjQgkFof9gKDe31VvFc+doTSSR3enoGY1A8vQA2C7ENUkuRPKJTIqaAbIhrpWHdj189b5RkVwY3nUsQyQKCUUziaeNNuVRC6aLCNtntkkeVCi1g9glTvxhBKMfJGTMWsAV3FpBwwdRDNDmthh2C5lOXnKqPXesZPnfYtxTQlrOQ4iyalTvYsL+DlGXFLHOPuuq+HPTFGwSyvz+CGteEtDg/gfZfHUs+pRK07YjR0w0cR7yeGy7SWH9EmSHMXHP/pw5ghDZbUJ0YXZbMEOf1dbY9zBUabaVS4mOVpqOwUgbm/kg7MUtX7uzrUaHXQe0iX02zXWgNbkbImQI1ZPdF+SFWLeQJHTbWrBmAZLgB86N+B/PtD/k84uosp7i0scxl5v7hGOj7N8rgAjyXJOuXuWigDCu9iPHHr17YH25WaCMhY69gQd3M1eKiIub+bVP0e9ckZXkuwalLWo5Gh6JsMlzc1+I4GztcXK8VE5bu5Z8k8Du5I3OyNs1lVcJYtNAbpI8TKjMjLFcWBhpXqyXOxFf+fofD86W0SvFAO7T4+DgejIus3Rfkfa0=
+  on:
+    tags: true
+    repo: hmcts/cmc-draft-store-middleware
