@@ -54,7 +54,7 @@ Run the linting:
 $ yarn lint
 ```
 
-Linting will also run automatically prior committing changes.
+Linting will also run automatically prior to committing changes.
 
 #### Running the tests
 
