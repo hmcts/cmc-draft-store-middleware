@@ -25,12 +25,18 @@ If draft does not exist in the draft store then an empty draft is set it in Expr
 To add library to the project dependencies run:
 
 ```
-yarn add @hmcts/cmc-draft-store-middleware
+$ yarn add @hmcts/cmc-draft-store-middleware
+```
+
+or
+
+```
+$ npm install @hmcts/cmc-draft-store-middleware
 ```
 
 #### Sample code
 
-Example use of the middleware is presented below:
+Example use of the middleware in the Express.js application is presented below:
 
 ```
 import { DraftMiddleware } from '@hmcts/cmc-draft-store-middleware/dist/middleware/draftMiddleware'

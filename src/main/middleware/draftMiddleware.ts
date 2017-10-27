@@ -12,12 +12,19 @@ import { UUIDUtils } from '../utils/uuidUtils'
  * Filters list of drafts to return only these matching external ID. If none of the drafts has external ID set
  * then unchanged list is returned so that they can be migrated to new format with external ID (legacy drafts scenario).
  */
-function tryFilterByExternalId<T extends DraftDocument> (drafts: Draft<T>[], externalId: string): Draft<T>[] {
+function filterByExternalId<T extends DraftDocument> (drafts: Draft<T>[], externalId: string): Draft<T>[] {
   if (drafts.filter(draft => draft.document.externalId !== undefined).length === 0) {
     return drafts
   }
 
   return drafts.filter(item => item.document.externalId === externalId)
+}
+
+/**
+ * Checks whether draft (optional) has an external ID or not
+ */
+function draftIsMissingExternalId<T extends DraftDocument> (draft: Draft<T>): boolean {
+  return draft.document !== undefined && draft.document.externalId === undefined
 }
 
 export class DraftMiddleware {
@@ -26,13 +33,13 @@ export class DraftMiddleware {
     return async function (req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
       if (res.locals.isLoggedIn) {
         try {
-          let drafts = await draftService.find(draftType, limit + '', res.locals.user.bearerToken, deserializeFn)
+          let drafts = await draftService.find(draftType, limit.toString(), res.locals.user.bearerToken, deserializeFn)
 
           // req.params isn't populated here https://github.com/expressjs/express/issues/2088
           const externalId: string | undefined = UUIDUtils.extractFrom(req.path)
 
           if (externalId !== undefined) {
-            drafts = tryFilterByExternalId(drafts, externalId)
+            drafts = filterByExternalId(drafts, externalId)
           }
 
           if (drafts.length > 1) {
@@ -46,7 +53,7 @@ export class DraftMiddleware {
             draft = new Draft<T>(0, draftType, deserializeFn(undefined), moment(), moment())
           }
 
-          if (draft.document !== undefined && draft.document.externalId === undefined && externalId !== undefined) {
+          if (draftIsMissingExternalId(draft) && externalId !== undefined) {
             draft.document.externalId = externalId
           }
           res.locals.user[`${draftType}Draft`] = draft
