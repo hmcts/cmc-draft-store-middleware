@@ -6,6 +6,8 @@
 
 [![NPM version badge](https://img.shields.io/npm/v/@hmcts/cmc-draft-store-middleware.svg)](https://www.npmjs.com/@hmcts/cmc-draft-store-middleware)
 
+[![Node version badge](https://img.shields.io/node/v/@hmcts/cmc-draft-store-middleware.svg)](https://www.npmjs.com/@hmcts/cmc-draft-store-middleware)
+
 [![Greenkeeper badge](https://badges.greenkeeper.io/hmcts/cmc-draft-store-middleware.svg)](https://greenkeeper.io/)
 
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
@@ -39,7 +41,7 @@ app.all(/^.*$/, DraftMiddleware.requestHandler(draftService, 'default', (value: 
 
 #### Prerequisites
 
-* [Node.js](https://nodejs.org/) >= v8.0.0
+* [Node.js](https://nodejs.org/)
 * [yarn](https://yarnpkg.com/)
 
 #### Dependencies
