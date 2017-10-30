@@ -19,13 +19,13 @@ If draft does not exist in the draft store then an empty draft is set it in Expr
 
 To add library to the project dependencies run:
 
-```
+```bash
 $ yarn add @hmcts/cmc-draft-store-middleware
 ```
 
 or
 
-```
+```bash
 $ npm install @hmcts/cmc-draft-store-middleware
 ```
 
