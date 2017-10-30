@@ -7,7 +7,7 @@ import { mockReq, mockRes } from 'sinon-express-mock'
 
 import { DraftMiddleware } from '../../main/middleware/draftMiddleware'
 
-import { DraftService, Draft } from '@hmcts/draft-store-client'
+import { DraftService, Draft, Secrets } from '@hmcts/draft-store-client'
 import { DraftDocument } from '../../main/model/draftDocument'
 import moment = require('moment')
 
@@ -113,6 +113,20 @@ describe('Draft middleware', () => {
         chai.expect(next.firstCall.args).to.be.lengthOf(1)
         chai.expect(next.firstCall.args[0]).to.be.instanceof(Error)
           .with.property('message').to.be.equal('More then one draft has been found')
+      })
+
+      it('should use encryption secrets when they are provided', async () => {
+        const secrets = new Secrets('primary', 'secondary')
+
+        await DraftMiddleware.requestHandler(draftService as any, 'default', 100, doc => doc, secrets)(req, res, next)
+
+        chai.expect(draftService.find).to.have.been.calledWith(
+          sinon.match.any,
+          sinon.match.any,
+          sinon.match.any,
+          sinon.match.any,
+          secrets
+        )
       })
     })
   })

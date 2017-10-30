@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/cmc-draft-store-middleware",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Node.js middleware for draft store",
   "engines": {
     "node": ">=8.0.0"
@@ -25,7 +25,7 @@
   "author": "HMCTS Reform",
   "license": "MIT",
   "dependencies": {
-    "@hmcts/draft-store-client": "^1.1.1",
+    "@hmcts/draft-store-client": "^1.2.1",
     "moment": "^2.19.1"
   },
   "devDependencies": {
