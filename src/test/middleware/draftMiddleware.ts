@@ -3,14 +3,12 @@ import * as express from 'express'
 import * as chai from 'chai'
 import * as spies from 'sinon-chai'
 import * as sinon from 'sinon'
-import { SinonSpy, SinonStubbedInstance } from 'sinon'
 import { mockReq, mockRes } from 'sinon-express-mock'
 
 import { DraftMiddleware } from '../../main/middleware/draftMiddleware'
 
-import { DraftService } from '@hmcts/draft-store-client'
+import { DraftService, Draft } from '@hmcts/draft-store-client'
 import { DraftDocument } from '../../main/model/draftDocument'
-import { Draft } from '@hmcts/draft-store-client'
 import moment = require('moment')
 
 chai.use(spies)
@@ -23,10 +21,10 @@ function newDraftDocument (externalId?: string): DraftDocument {
 
 describe('Draft middleware', () => {
   describe('request handler', () => {
-    let draftService: SinonStubbedInstance<DraftService>
+    let draftService: sinon.SinonStubbedInstance<DraftService>
     let req: express.Request
     let res: express.Response
-    let next: SinonSpy
+    let next: sinon.SinonSpy
 
     beforeEach(() => {
       draftService = sinon.createStubInstance(DraftService)
