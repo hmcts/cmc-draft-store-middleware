@@ -1,7 +1,7 @@
 import * as express from 'express'
 import * as moment from 'moment'
 
-import { Draft, DraftService } from '@hmcts/draft-store-client'
+import { Draft, DraftService, Secrets } from '@hmcts/draft-store-client'
 
 import { DraftDocument } from '../model/draftDocument'
 
@@ -28,14 +28,24 @@ function draftIsMissingExternalId<T extends DraftDocument> (draft: Draft<T>): bo
 
 export class DraftMiddleware {
 
-  static requestHandler<T extends DraftDocument> (draftService: DraftService,
-                                                  draftType: string,
-                                                  limit: number,
-                                                  deserializeFn: (value: any) => T = (value) => value): express.RequestHandler {
+  static requestHandler<T extends DraftDocument> (
+    draftService: DraftService,
+    draftType: string,
+    limit: number,
+    deserializeFn: (value: any) => T = (value) => value,
+    secrets?: Secrets
+  ): express.RequestHandler {
+
     return async function (req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
       if (res.locals.isLoggedIn) {
         try {
-          let drafts = await draftService.find(draftType, limit.toString(), res.locals.user.bearerToken, deserializeFn)
+          let drafts = await draftService.find(
+            draftType,
+            limit.toString(),
+            res.locals.user.bearerToken,
+            deserializeFn,
+            secrets
+          )
 
           // req.params isn't populated here https://github.com/expressjs/express/issues/2088
           const externalId: string | undefined = UUIDUtils.extractFrom(req.path)
