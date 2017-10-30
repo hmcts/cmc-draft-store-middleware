@@ -3,7 +3,6 @@ import * as express from 'express'
 import * as chai from 'chai'
 import * as spies from 'sinon-chai'
 import * as sinon from 'sinon'
-import { match } from 'sinon'
 import { mockReq, mockRes } from 'sinon-express-mock'
 
 import { DraftMiddleware } from '../../main/middleware/draftMiddleware'
@@ -121,7 +120,13 @@ describe('Draft middleware', () => {
 
         await DraftMiddleware.requestHandler(draftService as any, 'default', 100, doc => doc, secrets)(req, res, next)
 
-        chai.expect(draftService.find).to.have.been.calledWith(match.any, match.any, match.any, match.any, secrets)
+        chai.expect(draftService.find).to.have.been.calledWith(
+          sinon.match.any,
+          sinon.match.any,
+          sinon.match.any,
+          sinon.match.any,
+          secrets
+        )
       })
     })
   })
