@@ -68,7 +68,7 @@ export class DraftMiddleware {
           if (draftIsMissingExternalId(draft) && externalId !== undefined) {
             draft.document.externalId = externalId
           }
-          res.locals.user[`${draftType}Draft`] = draft
+          res.locals[`${draftType}Draft`] = draft
 
           next()
         } catch (err) {
