@@ -63,12 +63,12 @@ describe('Draft middleware', () => {
         draftService.find.returns(Promise.resolve([]))
 
         await DraftMiddleware.requestHandler(draftService as any, 'default', 100)(req, res, next)
-        chai.expect(res.locals.user.defaultDraft).to.be.instanceof(Draft)
-        chai.expect(res.locals.user.defaultDraft.id).to.be.equal(0)
-        chai.expect(res.locals.user.defaultDraft.type).to.be.equal('default')
-        chai.expect(res.locals.user.defaultDraft.document).to.be.undefined
-        chai.expect(res.locals.user.defaultDraft.created).to.be.not.undefined
-        chai.expect(res.locals.user.defaultDraft.updated).to.be.not.undefined
+        chai.expect(res.locals.defaultDraft).to.be.instanceof(Draft)
+        chai.expect(res.locals.defaultDraft.id).to.be.equal(0)
+        chai.expect(res.locals.defaultDraft.type).to.be.equal('default')
+        chai.expect(res.locals.defaultDraft.document).to.be.undefined
+        chai.expect(res.locals.defaultDraft.created).to.be.not.undefined
+        chai.expect(res.locals.defaultDraft.updated).to.be.not.undefined
         chai.expect(next).to.have.been.calledOnce
         chai.expect(next.firstCall.args).to.be.empty
       })
@@ -81,12 +81,12 @@ describe('Draft middleware', () => {
         ]))
 
         await DraftMiddleware.requestHandler(draftService as any, 'default', 100)(req, res, next)
-        chai.expect(res.locals.user.defaultDraft).to.be.instanceof(Draft)
-        chai.expect(res.locals.user.defaultDraft.id).to.be.equal(0)
-        chai.expect(res.locals.user.defaultDraft.type).to.be.equal('default')
-        chai.expect(res.locals.user.defaultDraft.document).to.be.undefined
-        chai.expect(res.locals.user.defaultDraft.created).to.be.not.undefined
-        chai.expect(res.locals.user.defaultDraft.updated).to.be.not.undefined
+        chai.expect(res.locals.defaultDraft).to.be.instanceof(Draft)
+        chai.expect(res.locals.defaultDraft.id).to.be.equal(0)
+        chai.expect(res.locals.defaultDraft.type).to.be.equal('default')
+        chai.expect(res.locals.defaultDraft.document).to.be.undefined
+        chai.expect(res.locals.defaultDraft.created).to.be.not.undefined
+        chai.expect(res.locals.defaultDraft.updated).to.be.not.undefined
         chai.expect(next).to.have.been.calledOnce
         chai.expect(next.firstCall.args).to.be.empty
       })
@@ -96,7 +96,7 @@ describe('Draft middleware', () => {
         draftService.find.returns(Promise.resolve([draft]))
 
         await DraftMiddleware.requestHandler(draftService as any, 'default', 100)(req, res, next)
-        chai.expect(res.locals.user.defaultDraft).to.be.equal(draft)
+        chai.expect(res.locals.defaultDraft).to.be.equal(draft)
         chai.expect(next).to.have.been.calledOnce
         chai.expect(next.firstCall.args).to.be.empty
       })
@@ -108,7 +108,7 @@ describe('Draft middleware', () => {
         ]))
 
         await DraftMiddleware.requestHandler(draftService as any, 'default', 100)(req, res, next)
-        chai.expect(res.locals.user.defaultDraft).to.be.undefined
+        chai.expect(res.locals.defaultDraft).to.be.undefined
         chai.expect(next).to.have.been.calledOnce
         chai.expect(next.firstCall.args).to.be.lengthOf(1)
         chai.expect(next.firstCall.args[0]).to.be.instanceof(Error)
