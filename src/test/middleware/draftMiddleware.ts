@@ -35,7 +35,9 @@ describe('Draft middleware', () => {
     })
 
     afterEach(() => {
-      sinon.restore(draftService)
+      Object.values(draftService).forEach(stub => {
+        stub.restore()
+      })
     })
 
     describe('when user is not logged in', () => {
