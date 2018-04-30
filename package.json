@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "Node.js middleware for draft store",
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=8.9.0"
   },
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
