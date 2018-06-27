@@ -45,7 +45,7 @@
     "sinon": "^6.0.0",
     "sinon-chai": "^3.0.0",
     "sinon-express-mock": "^2.0.0",
-    "ts-node": "^6.0.0",
+    "ts-node": "^7.0.0",
     "tslint": "^5.5.0",
     "tslint-config-standard": "^7.0.0",
     "typescript": "^2.5.3"
