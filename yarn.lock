@@ -525,9 +525,9 @@ co@^4.6.0:
   integrity sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ=
 
 codacy-coverage@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/codacy-coverage/-/codacy-coverage-3.0.0.tgz#d4a0286b01aa0dfa10195b9bcff69c345de996b0"
-  integrity sha512-hQJIMhBM5JYeIpu9gKHRmIK5uj9zWDtWBDGtW7PnWRYHMr1Wp93B+l5s82d6XymFJDCZENSp0uWY9zfR1meBwQ==
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/codacy-coverage/-/codacy-coverage-3.1.0.tgz#a49a75d962733dc0b524b3d5eb3b6367d5bece59"
+  integrity sha512-CRxJUokkUVzZlu2nXfDFPbwE+9F8dOzz7jdIv2IffAqv7Yq9QSqSOeSxz0D0+v7Et2YlcpgAeIkx4Le7aQfisQ==
   dependencies:
     bluebird "^3.5.x"
     commander "^2.x"
