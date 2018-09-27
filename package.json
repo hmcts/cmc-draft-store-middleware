@@ -14,9 +14,7 @@
     "test": "TS_NODE_TYPE_CHECK=true mocha --opts mocha.opts --reporter-options reportFilename=unit,inlineAssets=true,reportTitle=cmc-draft-store-middleware 'src/test/**/*.ts'",
     "test:coverage": "TS_NODE_TYPE_CHECK=true nyc mocha --opts mocha.opts 'src/test/**/*.ts'",
     "test:codacy-upload": "cat ./coverage-report/lcov.info | codacy-coverage",
-    "test:codecov-upload": "nyc report --reporter=json && codecov -f coverage-report/*.json",
-    "precommit": "yarn lint",
-    "prepush": "yarn test"
+    "test:codecov-upload": "nyc report --reporter=json && codecov -f coverage-report/*.json"
   },
   "repository": {
     "type": "git",
@@ -38,7 +36,7 @@
     "chai": "^4.1.2",
     "codacy-coverage": "^3.0.0",
     "codecov": "^3.0.0",
-    "husky": "^0.14.3",
+    "husky": "^1.0.1",
     "mocha": "^5.0.0",
     "mochawesome": "^3.0.0",
     "nyc": "^13.0.1",
@@ -66,5 +64,11 @@
     ],
     "report-dir": "coverage-report",
     "all": true
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint",
+      "pre-push": "yarn test"
+    }
   }
 }
