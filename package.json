@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/cmc-draft-store-middleware",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Node.js middleware for draft store",
   "engines": {
     "node": ">=8.9.0"

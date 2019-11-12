@@ -3,7 +3,7 @@ import * as moment from 'moment'
 
 import { Draft, DraftService, Secrets } from '@hmcts/draft-store-client'
 
-import { DraftDocument } from '../model/draftDocument'
+import { DraftDocument } from '..'
 
 import { UUIDUtils } from '../utils/uuidUtils'
 
@@ -54,15 +54,16 @@ export class DraftMiddleware {
             drafts = filterByExternalId(drafts, externalId)
           }
 
+          let draft: Draft<T> = !drafts.length
+            ? new Draft<T>(0, draftType, deserializeFn(undefined), moment(), moment())
+            : drafts[0]
           if (drafts.length > 1) {
-            throw new Error('More then one draft has been found')
-          }
-
-          let draft: Draft<T>
-          if (drafts.length === 1) {
-            draft = drafts[0]
-          } else {
-            draft = new Draft<T>(0, draftType, deserializeFn(undefined), moment(), moment())
+            // just use the latest
+            for (let i = 1; i < drafts.length; i++) {
+              if (draft.updated.isBefore(drafts[i].updated)) {
+                draft = drafts[i]
+              }
+            }
           }
 
           if (draftIsMissingExternalId(draft) && externalId !== undefined) {
