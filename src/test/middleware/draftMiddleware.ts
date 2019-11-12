@@ -103,18 +103,16 @@ describe('Draft middleware', () => {
         chai.expect(next.firstCall.args).to.be.empty
       })
 
-      it('should pass to the next middleware with error when more then one draft is found', async () => {
-        draftService.find.returns(Promise.resolve([
-          new Draft(1, 'default', newDraftDocument(), moment(), moment()),
-          new Draft(2, 'default', newDraftDocument(), moment(), moment())
-        ]))
+      it('should set latest retrieved draft in user local scope when more than one draft is found', async () => {
+        let oldDraft = new Draft(1, 'default', newDraftDocument(),
+          moment().subtract(2, 'days'), moment().subtract(1, 'day'))
+        let latestDraft = new Draft(2, 'default', newDraftDocument(), moment(), moment())
+        draftService.find.returns(Promise.resolve([ oldDraft, latestDraft ]))
 
         await DraftMiddleware.requestHandler(draftService as any, 'default', 100)(req, res, next)
-        chai.expect(res.locals.defaultDraft).to.be.undefined
+        chai.expect(res.locals.defaultDraft).to.be.equal(latestDraft)
         chai.expect(next).to.have.been.calledOnce
-        chai.expect(next.firstCall.args).to.be.lengthOf(1)
-        chai.expect(next.firstCall.args[0]).to.be.instanceof(Error)
-          .with.property('message').to.be.equal('More then one draft has been found')
+        chai.expect(next.firstCall.args).to.be.empty
       })
 
       it('should use encryption secrets when they are provided', async () => {
